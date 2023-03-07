@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views.generic.edit import CreateView
 from .models import Chore
 
 
@@ -10,6 +11,11 @@ from .models import Chore
 # ]
 
 # Create your views here.
+class ChoreCreate(CreateView):
+  model = Chore
+  fields = '__all__'
+    # FIX THIS LATER for some sort of chore detail page
+  success_url = '/chores'
 
 
 # Build the home view
