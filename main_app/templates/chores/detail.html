@@ -12,6 +12,10 @@
             <p>Pay Amount: {{ chore.amount }} Dollars </p>
 
         </div>
+        <div class="card-action">
+            <a href="{% url 'chores_update' chore.id %}">Edit</a>
+            <a href="{% url 'chores_delete' chore.id %}">Delete</a>
+          </div>
     </div>
 
 {% endblock %}
