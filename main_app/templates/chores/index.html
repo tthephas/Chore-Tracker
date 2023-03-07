@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+    {% block content %}
+
+    <h1>Chore List</h1>
+
+    {% for chore in chores %}
+    <div class="card">
+        <div class="card-content">
+        <span class="card-title">{{ chore.name }}</span>
+        <p>Type: {{ chore.type }}</p>
+        <p>Description: {{ chore.description }}</p>
+
+        <p>Amount: {{ chore.amount }}</p>
+        </div>
+    </div>
+    {% endfor %}
+
+    {% endblock %}

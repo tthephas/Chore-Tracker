@@ -1,5 +1,13 @@
 from django.shortcuts import render
 
+
+# Build some chores to start
+
+chores = [
+  {'name': 'Fold the Laundry', 'type': 'cleaning', 'description': 'Folded and put away my clothes today', 'amount': 5},
+  {'name': 'Load Dishwasher', 'type': 'cleaning', 'description': 'I put 4 plates and 2 cups in dishwasher after dinner', 'amount': 3},
+]
+
 # Create your views here.
 
 
@@ -11,3 +19,6 @@ def home(request):
 def about(request):
   return render(request, 'about.html')
 
+# Add the chores index view
+def chores_index(request):
+  return render(request, 'chores/index.html', { 'chores': chores})

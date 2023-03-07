@@ -61,7 +61,7 @@ This app provides parents and children an EASY way to see current piggy bank amo
 ## Technologies used
 
 - HTML
-- CSS
+- CSS (Materialize)
 - PYTHON
 - DJANGO
 - AWS - S3
