@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic.edit import CreateView
 from .models import Chore
+from django.views.generic.detail import DetailView
 
 
 # Build some chores to start
@@ -14,8 +15,7 @@ from .models import Chore
 class ChoreCreate(CreateView):
   model = Chore
   fields = '__all__'
-    # FIX THIS LATER for some sort of chore detail page
-  success_url = '/chores'
+#   success_url = '/chores/{chore_id}'
 
 
 # Build the home view
@@ -30,3 +30,7 @@ def about(request):
 def chores_index(request):
   chores = Chore.objects.all()
   return render(request, 'chores/index.html', { 'chores': chores})
+
+def chores_detail(request, chore_id):
+  chore = Chore.objects.get(id=chore_id)
+  return render(request, 'chores/detail.html', { 'chore': chore })

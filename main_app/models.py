@@ -14,6 +14,6 @@ class Chore(models.Model):
         return self.name
     
     # FIX THIS LATER, detail page needed?
-    # def get_absolute_url(self):
-    #     return reverse('deail', kwargs={'chore_id': self.id})
+    def get_absolute_url(self):
+        return reverse('detail', kwargs={'chore_id': self.id})
 
