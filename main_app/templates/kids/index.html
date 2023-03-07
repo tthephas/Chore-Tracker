@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Kid List</h1>
+
+{% for kid in kids %}
+  <div class="card">
+    <div class="card-content">
+      <span class="card-title">{{ kid.name }}</span>
+
+      <p>Age: {{ kid.age }}</p>
+      <p>Description: {{ kid.description }}</p>
+
+    </div>
+  </div>
+{% endfor %}
+
+{% endblock %}
