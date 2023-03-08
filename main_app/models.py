@@ -6,6 +6,21 @@ from django import forms
 
 
 # Create your models here.
+class Chore(models.Model):
+    name = models.CharField(max_length=100)
+    date = models.DateField()
+
+    description = models.TextField(max_length=400)
+    amount = models.IntegerField()
+    
+    
+    # override the str method in models to print better
+    def __str__(self):
+        return self.name
+    
+    
+    def get_absolute_url(self):
+        return reverse('chores_detail', kwargs={'chore_id': self.id})
 
 class Parent(models.Model):
     name = models.CharField(max_length=50)
@@ -25,6 +40,8 @@ class Kid(models.Model):
     description = models.CharField(max_length=150)
     # every kid, has one parent
     parent = models.ForeignKey(Parent, on_delete=models.CASCADE)
+    chores = models.ManyToManyField(Chore)
+
     # parent = models.CharField(max_length=150, default='jim')
 
         # override the str method in models to print better
@@ -34,19 +51,4 @@ class Kid(models.Model):
     def get_absolute_url(self):
         return reverse('kids_detail', kwargs={'kid_id': self.id})
 
-class Chore(models.Model):
-    name = models.CharField(max_length=100)
-    date = models.DateField()
-
-    description = models.TextField(max_length=400)
-    amount = models.IntegerField()
-    
-    
-    # override the str method in models to print better
-    def __str__(self):
-        return self.name
-    
-    
-    def get_absolute_url(self):
-        return reverse('chores_detail', kwargs={'chore_id': self.id})
 
