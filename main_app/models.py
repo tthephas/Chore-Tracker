@@ -36,13 +36,12 @@ class Kid(models.Model):
 
 class Chore(models.Model):
     name = models.CharField(max_length=100)
-    date = models.DateField(auto_now_add=False, auto_now=False, blank=True)
+    date = models.DateField()
 
     description = models.TextField(max_length=400)
     amount = models.IntegerField()
     
     
-
     # override the str method in models to print better
     def __str__(self):
         return self.name

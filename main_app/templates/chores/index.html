@@ -9,7 +9,7 @@
         <a href="{% url 'chores_detail' chore.id %}">
             <div class="card-content">
             <span class="card-title">{{ chore.name }}</span>
-            <p>Type: {{ chore.type }}</p>
+            <p>Date: {{ chore.date }}</p>
             <p>Description: {{ chore.description|linebreaks }}</p>
 
             <p>Pays: {{ chore.amount }} Dollars</p>

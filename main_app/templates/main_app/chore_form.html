@@ -17,4 +17,15 @@
     <br>
     <input type="submit" value="Submit for approval" class="btn">
   </form>
+  <script>
+      const dateEl = document.getElementById('id_date');
+  // M is Materialize's global variable
+      M.Datepicker.init(dateEl, {
+        format: 'yyyy-mm-dd',
+        defaultDate: new Date(),
+        setDefaultDate: true,
+        autoClose: true
+      });
+
+  </script>
 {% endblock %}
