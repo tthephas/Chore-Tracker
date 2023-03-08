@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Chore, Kid
+from .models import Chore, Kid, Parent
 from django.views.generic.detail import DetailView
 
 
@@ -11,9 +11,14 @@ from django.views.generic.detail import DetailView
 #   {'name': 'Load Dishwasher', 'type': 'cleaning', 'description': 'I put 4 plates and 2 cups in dishwasher after dinner', 'amount': 3},
 # ]
 
-kids = [
-  {'name': 'Mya', 'Age': 11, 'description': 'very silly'},
-  {'name': 'Ryan', 'Age': 9, 'description': 'very funny'}
+# kids = [
+#   {'name': 'Mya', 'age': 11, 'description': 'very silly'},
+#   {'name': 'Ryan', 'age': 9, 'description': 'very funny'}
+# ]
+
+parents = [
+  {'name': 'Josh', 'children': 2},
+  {'name': 'John', 'children': 3}
 ]
 
 
@@ -24,6 +29,11 @@ def home(request):
 # About route/page
 def about(request):
   return render(request, 'about.html')
+
+# Add the parents index view
+def parents_index(request):
+  parents = Parent.objects.all()
+  return render(request, 'parents/index.html', { 'parents': parents })
 
 # Add the kids index view
 def kids_index(request):
