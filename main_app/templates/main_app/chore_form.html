@@ -4,19 +4,21 @@
     {% if object %}
     <h1>Edit <span class="teal-text">{{object.name}}</span></h1>
     {% else %}
-    <h1>Add NEW Chore</h1>
+    <h1>Add NEW Chore for {{ kid.name }}</h1>
     {% endif %}
 
 
-  <form action="" method="POST">
-    <!-- Django requires the following for security purposes -->
-    {% csrf_token %}
-    <table>
-        {{ form.as_table }}
-    </table>
-    <br>
-    <input type="submit" value="Submit for approval" class="btn">
+  <form action="{% url 'chores_create' %}" method="POST">
+      <!-- Django requires the following for security purposes -->
+      {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+      <br>
+      <input type="submit" value="Submit for approval" class="btn">
   </form>
+
+
   <script>
       const dateEl = document.getElementById('id_date');
   // M is Materialize's global variable

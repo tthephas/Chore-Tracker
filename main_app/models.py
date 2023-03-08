@@ -13,11 +13,9 @@ class Chore(models.Model):
     description = models.TextField(max_length=400)
     amount = models.IntegerField()
     
-    
     # override the str method in models to print better
     def __str__(self):
         return self.name
-    
     
     def get_absolute_url(self):
         return reverse('chores_detail', kwargs={'chore_id': self.id})

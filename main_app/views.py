@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Chore, Kid, Parent
 from django.views.generic.detail import DetailView
+
 
 
 # Build some chores to start
@@ -58,6 +59,13 @@ def chores_detail(request, chore_id):
   return render(request, 'chores/detail.html', { 'chore': chore })
 
 
+## assoc chores to kids
+## unlike feedings or toys that were on same page. how do we link them?
+def assoc_chore(request, kid_id, chore_id):
+  Kid.objects.get(id=kid_id).chores.add(chore_id)
+  return redirect('kids_detail', kid_id=kid_id)
+
+
 # Create your views here.
 # PARENT VIEWS
 class ParentCreate(CreateView):
@@ -80,7 +88,7 @@ class ParentDelete(DeleteView):
 
 class KidCreate(CreateView):
   model = Kid
-  fields = '__all__'
+  fields = ['name', 'age','description']
 #   success_url = '/chores/{chore_id}'
 
 class KidUpdate(UpdateView):
