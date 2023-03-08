@@ -13,3 +13,7 @@ padding-top: 0;
 text-align: right;
 }
   
+#index_cards{
+    width: 400px;
+    background-color: aqua;
+}

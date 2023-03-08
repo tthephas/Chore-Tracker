@@ -2,12 +2,8 @@ from django.db import models
 from django.urls import reverse
 from django import forms
 
-# would like a drop down for type, cleaning or learning
-# tuple of choices for type of chore
-# chore_type = (
-#     ('C', 'Cleaning'),
-#     ('L', 'Learning')
-# )
+
+
 
 # Create your models here.
 
@@ -29,6 +25,7 @@ class Kid(models.Model):
     description = models.CharField(max_length=150)
     # every kid, has one parent
     parent = models.ForeignKey(Parent, on_delete=models.CASCADE)
+    # parent = models.CharField(max_length=150, default='jim')
 
         # override the str method in models to print better
     def __str__(self):
@@ -39,7 +36,7 @@ class Kid(models.Model):
 
 class Chore(models.Model):
     name = models.CharField(max_length=100)
-    type = models.CharField(max_length=100)
+    date = models.DateField(auto_now_add=False, auto_now=False, blank=True)
 
     description = models.TextField(max_length=400)
     amount = models.IntegerField()

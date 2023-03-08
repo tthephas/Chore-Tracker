@@ -5,6 +5,7 @@
 
 {% for kid in kids %}
   <div class="card">
+    <a href="{% url 'kids_detail' kid.id %}">
     <div class="card-content">
       <span class="card-title">{{ kid.name }}</span>
 
@@ -12,6 +13,7 @@
       <p>Description: {{ kid.description }}</p>
 
     </div>
+    </a>
   </div>
 {% endfor %}
 
