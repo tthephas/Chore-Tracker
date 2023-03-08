@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Parent Details</h1>
+
+<div class="card">
+  <div class="card-content">
+    <span class="card-title">{{ parent.name }}</span>
+    <p># of Children: {{ parent.children }}</p>
+
+  </div>
+  <div class="card-action">
+    <a href="{% url 'parents_update' cat.id %}">Edit</a>
+    <a href="{% url 'parents_delete' cat.id %}">Delete</a>
+  </div>
+</div>
+
+{% endblock %}

@@ -16,10 +16,10 @@ from django.views.generic.detail import DetailView
 #   {'name': 'Ryan', 'age': 9, 'description': 'very funny'}
 # ]
 
-parents = [
-  {'name': 'Josh', 'children': 2},
-  {'name': 'John', 'children': 3}
-]
+# parents = [
+#   {'name': 'Josh', 'children': 2},
+#   {'name': 'John', 'children': 3}
+# ]
 
 
 # Build the home view
@@ -35,10 +35,18 @@ def parents_index(request):
   parents = Parent.objects.all()
   return render(request, 'parents/index.html', { 'parents': parents })
 
+def parents_detail(request, parent_id):
+  parent = Parent.objects.get(id=parent_id)
+  return render(request, 'parents/detail.html', { 'parent': parent })
+
 # Add the kids index view
 def kids_index(request):
   kids = Kid.objects.all()
   return render(request, 'kids/index.html', { 'kids': kids })
+
+def kids_detail(request, kid_id):
+  kid = Kid.objects.get(id=kid_id)
+  return render(request, 'kids/detail.html', { 'kid': kid })
 
 # Add the chores index view
 def chores_index(request):
@@ -51,6 +59,43 @@ def chores_detail(request, chore_id):
 
 
 # Create your views here.
+# PARENT VIEWS
+class ParentCreate(CreateView):
+  model = Parent
+  fields = '__all__'
+
+
+class ParentUpdate(UpdateView):
+  model = Parent
+  
+  fields = ['children']
+
+class ParentDelete(DeleteView):
+   model = Parent
+   success_url = '/parents'
+
+
+# Create your views here.
+# KID VIEWS
+
+class KidCreate(CreateView):
+  model = Kid
+  fields = '__all__'
+#   success_url = '/chores/{chore_id}'
+
+class KidUpdate(UpdateView):
+  model = Kid
+  # can they change their parent? like from mom to dad. hmmm
+  fields = ['age','description']
+
+class KidDelete(DeleteView):
+   model = Kid
+   success_url = '/kids'
+
+
+# Create your views here.
+# CHORE VIEWS
+
 class ChoreCreate(CreateView):
   model = Chore
   fields = '__all__'

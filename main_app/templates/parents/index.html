@@ -5,12 +5,14 @@
 
 {% for parent in parents %}
   <div class="card">
-    <div class="card-content">
-      <span class="card-title">{{ parent.name }}</span>
-      <p>Number of kids: {{ parent.children }}</p>
+    <a href="{% url 'parents_detail' parent.id %}">
+      <div class="card-content">
+        <span class="card-title">{{ parent.name }}</span>
+        <p>Number of kids: {{ parent.children }}</p>
 
 
-    </div>
+      </div>
+    </a>
   </div>
 {% endfor %}
 

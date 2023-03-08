@@ -20,7 +20,7 @@ class Parent(models.Model):
         return self.name
     
     def get_absolute_url(self):
-        return reverse('detail', kwargs={'parent_id': self.id})
+        return reverse('parents_detail', kwargs={'parent_id': self.id})
     
 
 class Kid(models.Model):
@@ -35,7 +35,7 @@ class Kid(models.Model):
         return self.name
     
     def get_absolute_url(self):
-        return reverse('detail', kwargs={'kid_id': self.id})
+        return reverse('kids_detail', kwargs={'kid_id': self.id})
 
 class Chore(models.Model):
     name = models.CharField(max_length=100)
@@ -52,5 +52,5 @@ class Chore(models.Model):
     
     
     def get_absolute_url(self):
-        return reverse('detail', kwargs={'chore_id': self.id})
+        return reverse('chores_detail', kwargs={'chore_id': self.id})
 
