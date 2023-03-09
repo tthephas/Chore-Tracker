@@ -6,6 +6,7 @@ from django import forms
 
 
 
+
 class Parent(models.Model):
     name = models.CharField(max_length=50)
     children = models.IntegerField()
