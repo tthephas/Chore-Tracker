@@ -22,9 +22,9 @@ class Kid(models.Model):
     name = models.CharField(max_length=50)
     age = models.IntegerField()
     description = models.CharField(max_length=150)
+    current_balance = models.IntegerField()
     # every kid, has one parent
     parent = models.ForeignKey(Parent, on_delete=models.CASCADE)
-    
 
     # parent = models.CharField(max_length=150, default='jim')
 
