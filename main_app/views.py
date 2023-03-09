@@ -61,9 +61,9 @@ def chores_detail(request, chore_id):
 
 ## assoc chores to kids
 ## unlike feedings or toys that were on same page. how do we link them?
-def assoc_chore(request, kid_id, chore_id):
-  Kid.objects.get(id=kid_id).chores.add(chore_id)
-  return redirect('kids_detail', kid_id=kid_id)
+# def assoc_chore(request, kid_id, chore_id):
+#   Kid.objects.get(id=kid_id).chores.add(chore_id)
+#   return redirect('kids_detail', kid_id=kid_id)
 
 
 # Create your views here.

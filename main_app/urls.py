@@ -16,7 +16,7 @@ urlpatterns = [
   path('kids/create/', views.KidCreate.as_view(), name='kids_create'),
   path('kids/<int:pk>/update', views.KidUpdate.as_view(), name='kids_update'),
   path('kids/<int:pk>/delete', views.KidDelete.as_view(), name='kids_delete'),
-  path('kids/<int:kid_id>/assoc_chore/<int:chore_id>/', views.assoc_chore, name='assoc_chore'),
+  
   
   path('chores/', views.chores_index, name='chores_index'),
   path('chores/create/', views.ChoreCreate.as_view(), name='chores_create'),

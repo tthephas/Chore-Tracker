@@ -77,7 +77,7 @@ WSGI_APPLICATION = "choretracker.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": 'choretrackerv2',
+        "NAME": 'choretrackerv3',
     }
 }
 

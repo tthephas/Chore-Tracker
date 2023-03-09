@@ -63,8 +63,8 @@
 <div class="row">
     <h3>{{ kid.name }}'s Chore history</h3>
   <div class="col s12">
-    {% if kid.chores.count %}
-      {% for chore in kid.chores.all %}
+    {% if kid.chore_set.count %}
+      {% for chore in kid.chore_set.all %}
         <div class="card">
             <div class="card-content">
                 <span class="card-title">
@@ -74,7 +74,7 @@
             </div>  
             <div class="input-field">
                 <i class="material-icons prefix">chat</i>                  
-                <input id="icon_chat" class="validate" placeholder="Placeholder"></input>
+                <input id="icon_chat" class="validate" placeholder="Parent Response"></input>
             </div>
         </div>
       {% endfor %}

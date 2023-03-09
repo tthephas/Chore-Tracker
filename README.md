@@ -56,7 +56,7 @@ This app provides parents and children an EASY way to see current piggy bank amo
 
 ## Entity Relationship Diagram
 
-![Alt text](ERD.png)
+![Alt text](img/ERD.png)
 
 ## Technologies used
 
@@ -65,3 +65,6 @@ This app provides parents and children an EASY way to see current piggy bank amo
 - PYTHON
 - DJANGO
 - AWS - S3
+
+
+[def]: ERD.png
