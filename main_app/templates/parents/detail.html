@@ -18,7 +18,7 @@
             </div>
         </div>
 
-        <div class="col s5 push-s2">
+        <!-- <div class="col s5 push-s2">
             <h5>{{ parent.name }}'s Children </h5>
             {% for kid in parent.kid_set.all %}
             <div class="card">
@@ -33,30 +33,40 @@
               </a>
             </div>
           {% endfor %}
+        </div> -->
+            
+            
+        <div class="col s4">
+          <form action="{% url 'add_kid' parent.id %}" method="POST">
+            {% csrf_token %}
+            <!-- Render the inputs -->
+            {{ kid_form.as_p }}
+            <input type="submit" class="btn" value="Add a Child">
+          </form>
         </div>
-            
-            
-<!--             
-            <table class="striped">
-              <thead>
-                <h5>{{ parent.name }}'s Children </h5>
-                <tr><th>Name</th><th>Age</th></tr>
-              </thead>
-              <tbody>
-                {% for kid in parent.kid_set.all %}
-                <div class="card">
+        <div class="col s4">
 
-                    <tr>
-                        <a href="{% url 'kids_detail' kid.id %}">
-                          <td>{{kid.name}}</td>
-                          <td>{{kid.age}}</td>
-                        </a>    
-                    </tr>
-                </div>
-                {% endfor %}
-              </tbody>
-            </table> -->
-        <!-- </div>   -->
+          <table class="striped">
+            <thead>
+              <h5>{{ parent.name }}'s Children </h5>
+              <tr><th>Name</th><th>Age</th></tr>
+            </thead>
+            <tbody>
+              {% for kid in parent.kid_set.all %}
+              
+
+                  <tr>
+
+                        <td>{{kid.name}}</td>
+                        <td>{{kid.age}}</td>
+
+                  </tr>
+              
+              {% endfor %}
+            </tbody>
+          </table> 
+        </div>
+
 
     </div>
 

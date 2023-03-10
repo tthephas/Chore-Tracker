@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Chore, Kid, Parent
 from django.views.generic.detail import DetailView
+from .forms import KidForm
 
 
 
@@ -37,8 +38,25 @@ def parents_index(request):
   return render(request, 'parents/index.html', { 'parents': parents })
 
 def parents_detail(request, parent_id):
+
   parent = Parent.objects.get(id=parent_id)
-  return render(request, 'parents/detail.html', { 'parent': parent })
+  kid_form = KidForm()
+  return render(request, 'parents/detail.html', { 'parent': parent, 'kid_form': kid_form })
+
+...
+
+# add this new function below cats_detail
+def add_kid(request, parent_id):
+  form = KidForm(request.POST)
+  # validate the form
+  if form.is_valid():
+    # don't save the form to the db until it
+    # has the cat_id assigned
+    new_kid = form.save(commit=False)
+    new_kid.parent_id = parent_id
+    new_kid.save()
+  return redirect('parents_detail', parent_id=parent_id)
+
 
 # Add the kids index view
 def kids_index(request):
