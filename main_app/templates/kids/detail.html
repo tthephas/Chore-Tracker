@@ -28,35 +28,20 @@
       </div>
   </div>
   <div class="col s6 push-s1">
-      <h5>Standard chores you can do</h5>
-      <table class="striped">
-          <thead>
-            <tr><th>Chore</th><th>How much</th></tr>
-          </thead>
-          <tbody>
-              <tr>
-                <td>Fold Laundry</td>
-                <td>3$</td>
-              </tr>
-              <tr>
-                <td>Clean Room</td>
-                <td>2$</td>
-              </tr>
-              <tr>
-                <td>Load Dishwasher</td>
-                <td>4$</td>
-              </tr>
-              <tr>
-                <td>Unload Dishwasher</td>
-                <td>4$</td>
-              </tr>
-              <!-- <tr>
-                <td>Read 30 minutes</td>
-                <td>5$</td>
-              </tr> -->
-          
-          </tbody>
-      </table>
+    <h3>{{ kid.name }}'s Chores</h3>
+    {% if kid.chores.count %}
+      {% for chore in kid.chores.all %}
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title">
+              A <span style="color: {{ chore.color }}">{{ chore.color }}</span> {{ chore.name }}
+            </span>
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <h5>No Chores 😿</h5>
+    {% endif %}
   </div>
   <div class="row"></div>
   <div class="row">
@@ -67,8 +52,34 @@
 </div>
 <hr>
 <div class="row">
-    <h3>{{ kid.name }}'s Chore history</h3>
-  <div class="col s12">
+    <h3>{{ kid.name }}'s Chores</h3>
+
+    <div class="col s6">
+      <h3>Available Chores</h3>
+      {% if chores.count %}
+        {% for chore in chores.all %}
+          <div class="card">
+            <div class="card-content">
+              <span class="card-title">
+                {{ chore.name }}<br>
+                {{ chore.date }}<br>
+                {{ chore.description }}<br>
+                {{ chore.amount }}<br>
+              </span>
+            </div>
+            <div class="card-action">
+              <form action="{% url 'assoc_chore' kid.id chore.id %}" method="POST">
+                {% csrf_token %}
+                <button type="submit" class="btn">Add</button>
+              </form>
+            </div>
+          </div>
+        {% endfor %}
+      {% else %}
+        <h5>{{kid.name}} Already Has All Chores Available</h5>
+      {% endif %}
+    </div>
+  <!-- <div class="col s12">
     {% if kid.chore_set.count %}
       {% for chore in kid.chore_set.all %}
         <div class="card">
@@ -90,7 +101,7 @@
     {% else %}
       <h5>No Chores done </h5>
     {% endif %}
-  </div>
+  </div> -->
 </div>
 
 

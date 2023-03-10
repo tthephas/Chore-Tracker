@@ -13,7 +13,7 @@ urlpatterns = [
 
   path('parents/<int:parent_id>/add_kid/', views.add_kid, name='add_kid'),
 
-
+  path('kids/<int:kid_id>/assoc_chore/<int:chore_id>/', views.assoc_chore, name='assoc_chore'),
   
   path('kids/', views.kids_index, name='kids_index'),
   path('kids/<int:kid_id>/', views.kids_detail, name='kids_detail'),

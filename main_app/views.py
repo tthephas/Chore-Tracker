@@ -65,7 +65,18 @@ def kids_index(request):
 
 def kids_detail(request, kid_id):
   kid = Kid.objects.get(id=kid_id)
-  return render(request, 'kids/detail.html', { 'kid': kid })
+
+  id_list = kid.chores.all().values_list('id')
+
+  chores_kid_hasnt_done = Chore.objects.exclude(id__in=id_list)
+
+  return render(request, 'kids/detail.html', { 'kid': kid, 'chores': chores_kid_hasnt_done })
+
+def assoc_chore(request, kid_id, chore_id):
+  # Note that you can pass a toy's id instead of the whole toy object
+  Kid.objects.get(id=kid_id).chores.add(kid_id)
+  return redirect('detail', kid_id=kid_id)
+
 
 # Add the chores index view
 def chores_index(request):
@@ -106,7 +117,7 @@ class ParentDelete(DeleteView):
 
 class KidCreate(CreateView):
   model = Kid
-  fields = ['name', 'age','description']
+  fields = ['name', 'age','description', 'current_balance']
 #   success_url = '/chores/{chore_id}'
 
 class KidUpdate(UpdateView):
