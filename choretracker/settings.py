@@ -90,7 +90,7 @@ WSGI_APPLICATION = "choretracker.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": 'choretrackerv4',
+        "NAME": 'choretrackerv5',
     }
 }
 
@@ -129,3 +129,6 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+LOGIN_REDIRECT_URL = '/kids/'
+LOGOUT_REDIRECT_URL = '/'

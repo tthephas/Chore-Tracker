@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse
 from django import forms
+from django.contrib.auth.models import User
 
 
 
@@ -26,6 +27,8 @@ class Parent(models.Model):
     name = models.CharField(max_length=50)
     children = models.IntegerField()
     chores = models.ManyToManyField(Chore)
+    # user foreign key
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
         # override the str method in models to print better
     def __str__(self):
