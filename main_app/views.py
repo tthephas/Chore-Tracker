@@ -127,13 +127,13 @@ class ParentDelete(LoginRequiredMixin, DeleteView):
 
 class KidCreate(LoginRequiredMixin, CreateView):
   model = Kid
-  fields = ['name', 'age','description', 'current_balance']
+  fields = ['name', 'age', 'current_balance']
 #   success_url = '/chores/{chore_id}'
 
 class KidUpdate(LoginRequiredMixin, UpdateView):
   model = Kid
   # can they change their parent? like from mom to dad. hmmm
-  fields = ['age','description']
+  fields = ['age', 'current_balance']
 
 class KidDelete(LoginRequiredMixin, DeleteView):
    model = Kid

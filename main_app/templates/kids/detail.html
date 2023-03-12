@@ -3,46 +3,55 @@
 
 <div class="row">
     <h5>{{ kid.name }} Details</h5>
-  <div class="col s6">
+  <div class="col s7">
       <div class="col s6"> 
           <div class="card">
             <div class="card-content">
                 <span class="card-title">{{ kid.name }}</span>
                 <p>Age: {{ kid.age }}</p>
-                <p>Description: {{ kid.description }}</p>
+                
                 <p>Parent: {{ kid.parent }}</p>
             </div>
+
+
+            <!-- photo -->
+            <div class="card small" style="height:fit-content; padding:5px;">
+              {% for photo in kid.photo_set.all %}
+              <img class="responsive-img card-panel" src="{{photo.url}}">
+              {% empty %}
+              <div class="card-panel teal-text center-align">No Photos Uploaded</div>
+              {% endfor %}
+              <!-- photo form -->
+              <form action="{% url 'add_photo' kid.id %}" enctype="multipart/form-data" method="POST" class="card-panel">
+                {% csrf_token %}
+                <input type="file" name="photo-file">
+                <br><br>
+                <input type="submit" class="btn" value="Upload Photo"></input>
+              </form>
+            </div>
+
+
             <div class="card-action">
                 <a href="{% url 'kids_update' kid.id %}">Edit</a>
                 <a href="{% url 'kids_delete' kid.id %}">Delete</a>
             </div>
           </div>
       
-          <!-- photo -->
-          {% for photo in kid.photo_set.all %}
-          <img class="responsive-img card-panel" src="{{photo.url}}">
-          {% empty %}
-          <div class="card-panel teal-text center-align">No Photos Uploaded</div>
-          {% endfor %}
-          <!-- photo form -->
-          <form action="{% url 'add_photo' kid.id %}" enctype="multipart/form-data" method="POST" class="card-panel">
-            {% csrf_token %}
-            <input type="file" name="photo-file">
-            <br><br>
-            <input type="submit" class="btn" value="Upload Photo"></input>
-          </form>
 
       </div>
       <div class="col s6">
-        <div class="card">
-          <span class="card-title">Piggy Bank</span>
+        <div class="card" style="text-align: center">
+          <span class="card-title" >Piggy Bank Balance</span>
           
-          <img src="https://m.media-amazon.com/images/I/51ckv2myWXL._AC_SL1280_.jpg" class="responsive-img">
+          <img 
+              src="https://m.media-amazon.com/images/I/51ckv2myWXL._AC_SL1280_.jpg" 
+              style="height:200px; width:200px" 
+              class="responsive-img">
           <h4>${{ kid.current_balance }}</h4>
         </div>
       </div>
   </div>
-  <div class="col s6 push-s1">
+  <div class="col s5 push-s1">
     <h3>{{ kid.name }}'s Chores</h3>
     {% if kid.chores.count %}
       {% for chore in kid.chores.all %}
@@ -61,19 +70,19 @@
         </div>
       {% endfor %}
     {% else %}
-      <h5>No Chores 😿</h5>
+      <h5>No Chores Done </h5>
     {% endif %}
   </div>
   <div class="row"></div>
   <div class="row">
     <a href="{% url 'chores_create' %}">
-        <h2> Build a chore to do! </h2>
+        <h2> Build a chore or choose from one below! </h2>
       </a>
   </div>
 </div>
 <hr>
 <div class="row">
-    <h3>{{ kid.name }}'s Chores</h3>
+
 
     <div class="col s6">
       <h3>Available Chores</h3>
