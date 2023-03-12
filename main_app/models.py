@@ -54,3 +54,10 @@ class Kid(models.Model):
         return reverse('kids_detail', kwargs={'kid_id': self.id})
 
 
+class Photo(models.Model):
+    url = models.CharField(max_length=200)
+    kid = models.ForeignKey(Kid, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"Photo for kid_id: {self.kid_id} @{self.url}"
+

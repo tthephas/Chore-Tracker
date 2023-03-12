@@ -1,27 +1,18 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Chore, Kid, Parent
+from .models import Chore, Kid, Parent, Photo
 from django.views.generic.detail import DetailView
 from .forms import KidForm
 
+import uuid
+import boto3
+from django.conf import settings
 
+AWS_ACCESS_KEY = settings.AWS_ACCESS_KEY
+AWS_SECRET_ACCESS_KEY = settings.AWS_SECRET_ACCESS_KEY
+S3_BUCKET = settings.S3_BUCKET
+S3_BASE_URL = settings.S3_BASE_URL
 
-# Build some chores to start
-
-# chores = [
-#   {'name': 'Fold the Laundry', 'type': 'cleaning', 'description': 'Folded and put away my clothes today', 'amount': 5},
-#   {'name': 'Load Dishwasher', 'type': 'cleaning', 'description': 'I put 4 plates and 2 cups in dishwasher after dinner', 'amount': 3},
-# ]
-
-# kids = [
-#   {'name': 'Mya', 'age': 11, 'description': 'very silly'},
-#   {'name': 'Ryan', 'age': 9, 'description': 'very funny'}
-# ]
-
-# parents = [
-#   {'name': 'Josh', 'children': 2},
-#   {'name': 'John', 'children': 3}
-# ]
 
 
 # Build the home view
@@ -148,4 +139,20 @@ class ChoreUpdate(UpdateView):
 class ChoreDelete(DeleteView):
    model = Chore
    success_url = '/chores'
+
+
+def add_photo(request, kid_id):
+    photo_file = request.FILES.get('photo-file', None)
+    if photo_file: 
+      s3 = boto3.client('s3', aws_access_key_id=AWS_ACCESS_KEY, aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
+      key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
+      try:
+        s3.upload_fileobj(photo_file, S3_BUCKET, key)
+        url = f"{S3_BASE_URL}{S3_BUCKET}/{key}"
+        photo = Photo(url=url, kid_id=kid_id)
+        photo.save()
+      except Exception as error:
+        print('Error uploading photo', error)
+        return redirect('kids_detail', kid_id=kid_id)
+    return redirect('kids_detail', kid_id=kid_id)
 
