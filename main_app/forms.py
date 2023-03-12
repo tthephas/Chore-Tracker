@@ -6,4 +6,4 @@ from .models import Kid
 class KidForm(ModelForm):
   class Meta:
     model = Kid
-    fields = ['name', 'age']
+    fields = ['name', 'age', 'current_balance']

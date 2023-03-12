@@ -74,8 +74,8 @@ def kids_detail(request, kid_id):
 
 def assoc_chore(request, kid_id, chore_id):
   # Note that you can pass a toy's id instead of the whole toy object
-  Kid.objects.get(id=kid_id).chores.add(kid_id)
-  return redirect('detail', kid_id=kid_id)
+  Kid.objects.get(id=kid_id).chores.add(chore_id)
+  return redirect('kids_detail', kid_id=kid_id)
 
 
 # Add the chores index view
