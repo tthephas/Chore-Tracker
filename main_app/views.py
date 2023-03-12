@@ -3,6 +3,10 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Chore, Kid, Parent, Photo
 from django.views.generic.detail import DetailView
 from .forms import KidForm
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 import uuid
 import boto3
@@ -24,10 +28,12 @@ def about(request):
   return render(request, 'about.html')
 
 # Add the parents index view
+@login_required
 def parents_index(request):
-  parents = Parent.objects.all()
+  parents = Parent.objects.filter(user=request.user)
   return render(request, 'parents/index.html', { 'parents': parents })
 
+@login_required
 def parents_detail(request, parent_id):
 
   parent = Parent.objects.get(id=parent_id)
@@ -37,6 +43,7 @@ def parents_detail(request, parent_id):
 ...
 
 # add this new function below cats_detail
+@login_required
 def add_kid(request, parent_id):
   form = KidForm(request.POST)
   # validate the form
@@ -50,10 +57,12 @@ def add_kid(request, parent_id):
 
 
 # Add the kids index view
+@login_required
 def kids_index(request):
   kids = Kid.objects.all()
   return render(request, 'kids/index.html', { 'kids': kids })
 
+@login_required
 def kids_detail(request, kid_id):
   kid = Kid.objects.get(id=kid_id)
 
@@ -63,6 +72,7 @@ def kids_detail(request, kid_id):
 
   return render(request, 'kids/detail.html', { 'kid': kid, 'chores': chores_kid_hasnt_done })
 
+@login_required
 def assoc_chore(request, kid_id, chore_id):
   # Note that you can pass a toy's id instead of the whole toy object
   Kid.objects.get(id=kid_id).chores.add(chore_id)
@@ -70,10 +80,12 @@ def assoc_chore(request, kid_id, chore_id):
 
 
 # Add the chores index view
+@login_required
 def chores_index(request):
   chores = Chore.objects.all()
   return render(request, 'chores/index.html', { 'chores': chores})
 
+@login_required
 def chores_detail(request, chore_id):
   chore = Chore.objects.get(id=chore_id)
   return render(request, 'chores/detail.html', { 'chore': chore })
@@ -88,17 +100,24 @@ def chores_detail(request, chore_id):
 
 # Create your views here.
 # PARENT VIEWS
-class ParentCreate(CreateView):
+class ParentCreate(LoginRequiredMixin, CreateView):
   model = Parent
-  fields = '__all__'
+  fields = ['name', 'children']
+    # This inherited method is called when a
+  # valid parent form is being submitted
+  def form_valid(self, form):
+    # Assign the logged in user (self.request.user)
+    form.instance.user = self.request.user  # form.instance is the parent
+    # Let the CreateView do its job as usual
+    return super().form_valid(form)
 
 
-class ParentUpdate(UpdateView):
+class ParentUpdate(LoginRequiredMixin, UpdateView):
   model = Parent
   
   fields = ['children']
 
-class ParentDelete(DeleteView):
+class ParentDelete(LoginRequiredMixin, DeleteView):
    model = Parent
    success_url = '/parents'
 
@@ -106,17 +125,17 @@ class ParentDelete(DeleteView):
 # Create your views here.
 # KID VIEWS
 
-class KidCreate(CreateView):
+class KidCreate(LoginRequiredMixin, CreateView):
   model = Kid
   fields = ['name', 'age','description', 'current_balance']
 #   success_url = '/chores/{chore_id}'
 
-class KidUpdate(UpdateView):
+class KidUpdate(LoginRequiredMixin, UpdateView):
   model = Kid
   # can they change their parent? like from mom to dad. hmmm
   fields = ['age','description']
 
-class KidDelete(DeleteView):
+class KidDelete(LoginRequiredMixin, DeleteView):
    model = Kid
    success_url = '/kids'
 
@@ -124,23 +143,23 @@ class KidDelete(DeleteView):
 # Create your views here.
 # CHORE VIEWS
 
-class ChoreCreate(CreateView):
+class ChoreCreate(LoginRequiredMixin, CreateView):
   model = Chore
   fields = '__all__'
 #   success_url = '/chores/{chore_id}'
 
-class ChoreUpdate(UpdateView):
+class ChoreUpdate(LoginRequiredMixin, UpdateView):
   model = Chore
     # disallow the changing of the name and type of the chore
     # only allow changing of description (what will get done) and
     # the amount (b/c its being negotiated)   
   fields = ['description', 'amount']
 
-class ChoreDelete(DeleteView):
+class ChoreDelete(LoginRequiredMixin, DeleteView):
    model = Chore
    success_url = '/chores'
 
-
+@login_required
 def add_photo(request, kid_id):
     photo_file = request.FILES.get('photo-file', None)
     if photo_file: 
@@ -156,3 +175,21 @@ def add_photo(request, kid_id):
         return redirect('kids_detail', kid_id=kid_id)
     return redirect('kids_detail', kid_id=kid_id)
 
+def signup(request):
+  error_message = ''
+  if request.method == 'POST':
+    # This is how to create a 'user' form object
+    # that includes the data from the browser
+    form = UserCreationForm(request.POST)
+    if form.is_valid():
+      # This will add the user to the database
+      user = form.save()
+      # This is how we log a user in via code
+      login(request, user)
+      return redirect('parents_index')
+    else:
+      error_message = 'Invalid sign up - try again'
+  # A bad POST or a GET request, so render signup.html with an empty form
+  form = UserCreationForm()
+  context = {'form': form, 'error_message': error_message}
+  return render(request, 'registration/signup.html', context)

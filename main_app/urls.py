@@ -29,5 +29,7 @@ urlpatterns = [
   path('chores/<int:chore_id>/', views.chores_detail, name='chores_detail'),
   path('chores/<int:pk>/update', views.ChoreUpdate.as_view(), name='chores_update'),
   path('chores/<int:pk>/delete', views.ChoreDelete.as_view(), name='chores_delete'),
+
+  path('accounts/signup/', views.signup, name='signup'),
 ]
 
