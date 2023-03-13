@@ -7,6 +7,7 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib import messages
 
 import uuid
 import boto3
@@ -76,6 +77,14 @@ def kids_detail(request, kid_id):
 def assoc_chore(request, kid_id, chore_id):
   # Note that you can pass a toy's id instead of the whole toy object
   Kid.objects.get(id=kid_id).chores.add(chore_id)
+  return redirect('kids_detail', kid_id=kid_id)
+
+
+@login_required
+def delete_chore(request, kid_id, chore_id):
+  # Note that you can pass a toy's id instead of the whole toy object
+  Kid.objects.get(id=kid_id).chores.remove(chore_id)
+  messages.success(request, "SUCCESS YES")
   return redirect('kids_detail', kid_id=kid_id)
 
 
@@ -158,6 +167,7 @@ class ChoreUpdate(LoginRequiredMixin, UpdateView):
 class ChoreDelete(LoginRequiredMixin, DeleteView):
    model = Chore
    success_url = '/chores'
+  #  messages.success("SUCCESS YES")
 
 @login_required
 def add_photo(request, kid_id):
@@ -174,6 +184,7 @@ def add_photo(request, kid_id):
         print('Error uploading photo', error)
         return redirect('kids_detail', kid_id=kid_id)
     return redirect('kids_detail', kid_id=kid_id)
+
 
 def signup(request):
   error_message = ''
