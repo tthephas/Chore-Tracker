@@ -2,10 +2,10 @@
 {% block content %}
 
 <div class="row">
-    <h5>{{ kid.name }} Details</h5>
+
   <div class="col s7">
       <div class="col s6"> 
-          <div class="card">
+          <div class="card" >
             <div class="card-content">
                 <span class="card-title">{{ kid.name }}</span>
                 <p>Age: {{ kid.age }}</p>
@@ -17,7 +17,7 @@
             <!-- photo -->
             <div class="card small" style="height:fit-content; padding:5px;">
               {% for photo in kid.photo_set.all %}
-              <img class="responsive-img card-panel" src="{{photo.url}}">
+              <img class="responsive-img card-panel" style="height: 200px; width: 250px;" src="{{photo.url}}">
               {% empty %}
               <div class="card-panel teal-text center-align">No Photos Uploaded</div>
               {% endfor %}
@@ -39,7 +39,7 @@
       
 
       </div>
-      <div class="col s6">
+      <div class="col s6 push-s3">
         <div class="card" style="text-align: center">
           <span class="card-title" >Piggy Bank Balance</span>
           
@@ -51,7 +51,7 @@
         </div>
       </div>
   </div>
-  <div class="col s5 push-s1">
+  <div class="col s4 push-s3">
     <h3>{{ kid.name }}'s Chores</h3>
     {% if kid.chores.count %}
       {% for chore in kid.chores.all %}
