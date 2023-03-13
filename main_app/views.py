@@ -175,6 +175,22 @@ def add_photo(request, kid_id):
         return redirect('kids_detail', kid_id=kid_id)
     return redirect('kids_detail', kid_id=kid_id)
 
+@login_required
+def delete_photo(request, kid_id):
+    photo_file = request.FILES.get('photo-file', None)
+    if photo_file: 
+      s3 = boto3.client('s3', aws_access_key_id=AWS_ACCESS_KEY, aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
+      key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
+      try:
+        s3.delete_object(photo_file, S3_BUCKET, key)
+        url = f"{S3_BASE_URL}{S3_BUCKET}/{key}"
+        photo = Photo(url=url, kid_id=kid_id)
+        photo.delete()
+      except Exception as error:
+        print('Error deleting photo', error)
+        return redirect('kids_detail', kid_id=kid_id)
+    return redirect('kids_detail', kid_id=kid_id)
+
 def signup(request):
   error_message = ''
   if request.method == 'POST':
