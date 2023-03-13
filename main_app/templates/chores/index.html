@@ -5,8 +5,12 @@
     <h5> See chores that others have done (and how much they made!) </h5>
 
     {% for chore in chores %}
-    <div class="card">
-        <a href="{% url 'chores_detail' chore.id %}">
+    <div class="card hoverable" 
+            style=" width: 450px; 
+                    display: inline-block; 
+                    flex-wrap: wrap; 
+                    border-radius: 20px;" >
+        <a href="{% url 'chores_detail' chore.id %}" style="color: black;">
             <div class="card-content">
             <span class="card-title">{{ chore.name }}</span>
             <p>Date: {{ chore.date }}</p>

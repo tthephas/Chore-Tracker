@@ -11,6 +11,11 @@
   <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schoolbell&display=swap" rel="stylesheet">
 
 </head>
 <body style="background-color: #F5E0ED;">
@@ -18,9 +23,9 @@
     <nav>
       <div class="nav-wrapper" style="background-color: #D67AB1; ">
         <ul>
-          <li><a href="/" class="left brand-logo" >&nbsp;&nbsp;Chore Tracker</a></li>
+          <li><a href="/" class="left brand-logo" style="font-family: 'Schoolbell', cursive; font-weight: bolder;">&nbsp;&nbsp;Chore Tracker</a></li>
         </ul>
-        <ul class="right">
+        <ul class="right" style="font-family: 'Schoolbell', cursive; font-weight: bolder;">
           <li><a href="{% url 'about' %}">About Chore Tracker</a></li>
           {% if user.is_authenticated %}
           <li><a href="{% url 'parents_create' %}">Add Parents</a></li>
