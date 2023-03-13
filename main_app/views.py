@@ -146,7 +146,7 @@ class KidDelete(LoginRequiredMixin, DeleteView):
 class ChoreCreate(LoginRequiredMixin, CreateView):
   model = Chore
   fields = '__all__'
-#   success_url = '/chores/{chore_id}'
+  success_url = '/chores'
 
 class ChoreUpdate(LoginRequiredMixin, UpdateView):
   model = Chore
