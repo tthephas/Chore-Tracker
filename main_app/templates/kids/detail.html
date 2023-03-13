@@ -5,7 +5,7 @@
 
   <div class="col s7">
       <div class="col s6 pull-s3"> 
-          <div class="card" style="width: 350px;" >
+          <div class="card" style="width: 350px; border-radius: 20px;" >
             <div class="card-content">
                 <span class="card-title">{{ kid.name }}</span>
                 <p>Age: {{ kid.age }}</p>
@@ -15,9 +15,9 @@
 
 
             <!-- photo -->
-            <div class="card" style="height:fit-content; padding:5px; ">
+            <div class="card" style="height:fit-content; padding:5px; border-radius: 10px;">
               {% for photo in kid.photo_set.all %}
-              <img class="responsive-img card-panel" style="height: 200px; width: 300px;" src="{{photo.url}}">
+              <img class="responsive-img card" style="height: 200px; width: 300px;" src="{{photo.url}}">
               {% empty %}
               <div class="card-panel teal-text center-align">No Photos Uploaded</div>
               {% endfor %}
@@ -25,7 +25,8 @@
               <form 
                 action="{% url 'add_photo' kid.id %}" 
                 enctype="multipart/form-data" 
-                method="POST" class="card-panel" 
+                method="POST" 
+                class="card" 
                 style="font-size: 12px;">
 
                 {% csrf_token %}
@@ -45,7 +46,7 @@
 
       </div>
       <div class="col s6 push-s1">
-        <div class="card medium" style="text-align: center; padding-top: 40px; width: 300px;">
+        <div class="card medium" style="text-align: center; padding-top: 40px; width: 300px; border-radius: 20px;">
           <span class="card-title" >Piggy Bank Balance</span>
           
           <img 
@@ -60,7 +61,7 @@
     <h3>{{ kid.name }}'s Chores</h3>
     {% if kid.chores.count %}
       {% for chore in kid.chores.all %}
-        <div class="card">
+        <div class="card" style="border-radius: 20px;">
           <div class="card-content">
             <span class="card-title">
               <span>
@@ -96,11 +97,11 @@
 <div class="row">
 
 
-    <div class="col s6">
+    <div class="col s12">
       <h3>Available Chores</h3>
       {% if chores.count %}
         {% for chore in chores.all %}
-          <div class="card">
+          <div class="card" style="width: 300px; border-radius: 20px; display: inline-block; margin-left:10px;">
             <div class="card-content">
               <span class="card-title">
                 {{ chore.name }}<br>
