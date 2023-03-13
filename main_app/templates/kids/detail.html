@@ -33,15 +33,16 @@
                 <input type="file" name="photo-file">
                 <br><br>
                 <input type="submit" class="btn" style="height: 30px; padding-bottom:3px; " value="Upload Photo"></input>
+              </form>
                 <form
                   action="{% url 'delete_photo' kid.id %}" 
                   enctype="multipart/form-data" 
                   method="POST" 
                   class="card" 
                   style="font-size: 12px; padding-bottom: 5px;">
+                  {% csrf_token %}
                   <input type="submit" class="btn red" style="height: 30px; padding-bottom:3px; " value="Delete Photo"></input>
                 </form>
-              </form>
 
             </div>
 
