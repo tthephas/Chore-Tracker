@@ -2,6 +2,7 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+    
 }
 
 main {
@@ -17,3 +18,4 @@ text-align: right;
     width: 400px;
     background-color: aqua;
 }
+
