@@ -16,7 +16,8 @@ urlpatterns = [
   path('kids/<int:kid_id>/assoc_chore/<int:chore_id>/', views.assoc_chore, name='assoc_chore'),
   # add photo
   path('kids/<int:kid_id>/add_photo/', views.add_photo, name='add_photo'),
-  path('kids/<int:kid_id>/delete_photo/', views.delete_photo, name='delete_photo'),
+  #delete photo
+  path('kids/<int:kid_id>/delete_photo/<int:pk>/', views.PhotoDelete.as_view(), name='delete_photo'),
   
   path('kids/', views.kids_index, name='kids_index'),
   path('kids/<int:kid_id>/', views.kids_detail, name='kids_detail'),
