@@ -84,8 +84,8 @@ def assoc_chore(request, kid_id, chore_id):
 def delete_chore(request, kid_id, chore_id):
   # Note that you can pass a toy's id instead of the whole toy object
   Kid.objects.get(id=kid_id).chores.remove(chore_id)
-  messages.success(request, "SUCCESS YES")
   return redirect('kids_detail', kid_id=kid_id)
+  messages.success(request, "SUCCESS YES")
 
 
 # Add the chores index view
