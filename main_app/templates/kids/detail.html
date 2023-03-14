@@ -6,13 +6,22 @@
 
   <div class="col s7">
       <div class="col s6 pull-s3"> 
-          <div class="card" style="width: 350px; border-radius: 20px; margin-top:40px; background-color: #E9E7F0; " >
-            <div class="card-content" style="font-weight: bolder; color:#008797">
-                <span class="card-title" style="font-weight: bold;">{{ kid.name }}</span>
-                <p>Age: {{ kid.age }}</p>
-                
-                <p>Parent: {{ kid.parent }}</p>
+          <div class="card" 
+                style="width: 375px; 
+                      height: 525px;
+                      border-radius: 20px; 
+                      margin-top:40px; 
+                      background-color: #E9E7F0; " >
+            
+            <div class="card-content" style="font-weight: bolder; color:#008797; " >
+                <span class="card-title" style="font-weight: bold;">{{ kid.name }}'s page,  Age {{ kid.age }}</span>
             </div>
+            <!-- <div class="card-content" style="font-weight: bolder; color:#008797; display: flex;flex-direction: column;">
+                <span class="card-title" style="font-weight: bold;">Age: {{ kid.age }}</span>
+            </div> -->
+
+                
+
 
 
             <!-- photo -->
@@ -53,8 +62,15 @@
       </div>
       <div class="col s6 push-s0">
         <div 
-          class="card large" 
-          style="text-align: center; padding-top: 40px; width: 350px; margin-top:40px; margin-bottom: 15px; border-radius: 20px; background-color: #E9E7F0;">
+          class="card" 
+          style="text-align: center; 
+                height: 525px;
+                  padding-top: 40px; 
+                  width: 375px; 
+                  margin-top:40px; 
+                  margin-bottom: 15px; 
+                  border-radius: 20px; 
+                  background-color: #E9E7F0;">
           <span class="card-title" style="font-weight: bolder; color:#008797; font-size: 36px;" >Piggy Bank Balance</span>
           
           <img 
