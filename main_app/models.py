@@ -58,8 +58,8 @@ class Kid(models.Model):
         return reverse('kids_detail', kwargs={'kid_id': self.id})
     
     # func for piggy bank increase
-    def add_to_balance(self):
-        self.current_balance += 25
+    def add_to_balance(self, amt):
+        self.current_balance += amt
         self.save()
 
 

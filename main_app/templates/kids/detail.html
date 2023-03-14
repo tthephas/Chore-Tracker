@@ -67,7 +67,7 @@
 
             </span>
             <div class="card-action">
-              <form action="{% url 'delete_chore' kid.id chore.id %}" method="POST">
+              <form action="{% url 'delete_chore' kid.id chore.id chore.amount %}" method="POST">
                 {% csrf_token %}
                 <button type="submit" class="btn red">Confirm Done</button>
 

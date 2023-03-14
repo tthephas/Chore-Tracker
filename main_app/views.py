@@ -87,10 +87,10 @@ def assoc_chore(request, kid_id, chore_id):
 
 
 @login_required
-def delete_chore(request, kid_id, chore_id):
+def delete_chore(request, kid_id, chore_id, chore_amount):
   # Note that you can pass a toy's id instead of the whole toy object
   Kid.objects.get(id=kid_id).chores.remove(chore_id)
-  Kid.objects.get(id=kid_id).add_to_balance()
+  Kid.objects.get(id=kid_id).add_to_balance(chore_amount)
   return redirect('kids_detail', kid_id=kid_id)
   messages.success(request, "SUCCESS YES")
 
