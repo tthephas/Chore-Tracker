@@ -41,7 +41,6 @@ def parents_detail(request, parent_id):
   kid_form = KidForm()
   return render(request, 'parents/detail.html', { 'parent': parent, 'kid_form': kid_form })
 
-...
 
 # add this new function below cats_detail
 @login_required

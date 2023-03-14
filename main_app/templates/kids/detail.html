@@ -75,7 +75,7 @@
           <span class="card-title" style="font-weight: bolder; color:#008797; font-size: 36px;" >Piggy Bank Balance</span>
           
           <img 
-              src="https://m.media-amazon.com/images/I/51ckv2myWXL._AC_SL1280_.jpg" 
+              src="https://cdn.cp.adobe.io/content/2/dcx/a1d9ba9c-9971-4642-89d4-34d6ad51eb75/rendition/preview.jpg/version/0/format/jpg/dimension/width/size/1200" 
               style="height:250px; width:250px; margin: 30px 0 0 0 ;" 
               class="responsive-img">
 
@@ -123,7 +123,7 @@
     {% else %}
       <h5>No Chores Done </h5>
       <div class="row" >
-        <a href="{% url 'chores_create' %}" style="text-decoration: underline;">
+        <a href="{% url 'chores_create' %}" style="text-decoration: underline; color:#8A0077">
             <h3> Build a chore or choose from one below! </h3>
           </a>
       </div>
@@ -169,7 +169,7 @@
           </div>
         {% endfor %}
       {% else %}
-        
+        No Chores right now. Come up with some! 
       {% endif %}
     </div>
 
