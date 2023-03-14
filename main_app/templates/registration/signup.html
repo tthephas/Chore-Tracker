@@ -5,7 +5,13 @@
 
 <p class="red-text">{{ error_message }}</p>
 
-    <form method="POST" action="{% url 'signup' %}" style="background-color: #E9E7F0; width: 750px; font-weight: bold; border-radius: 20px; padding: 20px;">
+    <form method="POST" 
+    action="{% url 'signup' %}" 
+    style="
+    background-color: #E9E7F0; 
+    width: 750px; font-weight: 
+    bold; border-radius: 20px; 
+    padding: 20px;">
         {% csrf_token %}
         {{ form.as_p }}
         <input type="submit" class="btn" value="Sign Up">

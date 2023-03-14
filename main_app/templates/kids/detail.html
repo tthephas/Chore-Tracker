@@ -66,6 +66,7 @@
           style="text-align: center; 
                 height: 525px;
                   padding-top: 40px; 
+                  
                   width: 375px; 
                   margin-top:40px; 
                   margin-bottom: 15px; 
@@ -79,7 +80,11 @@
               class="responsive-img">
 
 
-            <h1 style="color:#008797">${{ kid.current_balance }}</h1>
+            <h1 style="color:#008797;
+                      font-size: 90px;
+                      margin-right: 35px;
+                      
+                      ">$ {{ kid.current_balance }}</h1>
 
           
         </div>
@@ -148,11 +153,11 @@
                 height: 230px;
                 ">
             <div class="card-content">
-              <span class="card-title" style="font-size: 20px;">
+              <span class="card-title" style="font-size: 20px; ">
                 {{ chore.name }}<br>
                 
-                {{ chore.description }}<br><br>
-                {{ chore.amount }}$
+                - {{ chore.description }}<br><br>
+                Pays   ${{ chore.amount }}
               </span>
               
                 <form action="{% url 'assoc_chore' kid.id chore.id %}" method="POST">

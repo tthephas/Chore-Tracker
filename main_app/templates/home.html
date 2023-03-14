@@ -2,11 +2,21 @@
     
     {% block content %}
     
+    <div         
+    style="
+        color:#007252;
+        text-decoration: underline;
         
-    <div>
-        <h1 style="color:#007252">HOME of the CHORE TRACKER</h1>
+        font-size: 150px;
+        text-align: center; 
+        margin: 170px 0px;
+        font-weight:200;
+        letter-spacing: 8px;
+        ">
+        
+        
+        <a href="{% url 'parents_create' %}" style="color:#007252;"> Get Started!</a>
     </div>
-    <img src="img/Shutterstock_1933763045.jpg" alt="">
 
 
     {% endblock %}
