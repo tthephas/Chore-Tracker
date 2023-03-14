@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
+
 <div class="row">
 
   <div class="col s7">
@@ -75,13 +76,22 @@
         <div class="card" style="border-radius: 20px; background-color: #E9E7F0; ">
           <div class="card-content">
             <span class="card-title">
+
               <span>
                 
                 {{ chore.name }} for 
+
                 {{ chore.amount }} dollars
 
-              </span> 
+
             </span>
+            <div class="card-action">
+              <form action="{% url 'delete_chore' kid.id chore.id chore.amount %}" method="POST">
+                {% csrf_token %}
+                <button type="submit" class="btn red">Confirm Done</button>
+
+              </form>
+            </div>
           </div>
         </div>
 
@@ -126,9 +136,11 @@
             <div class="card-content">
               <span class="card-title" style="font-size: 20px;">
                 {{ chore.name }}<br>
+
                 
                 {{ chore.description }}<br><br>
                 {{ chore.amount }}$
+
               </span>
               
                 <form action="{% url 'assoc_chore' kid.id chore.id %}" method="POST">
