@@ -2,6 +2,7 @@ from django.db import models
 from django.urls import reverse
 from django import forms
 from django.contrib.auth.models import User
+from django.db.models import F
 
 
 
@@ -55,6 +56,11 @@ class Kid(models.Model):
     
     def get_absolute_url(self):
         return reverse('kids_detail', kwargs={'kid_id': self.id})
+    
+    # func for piggy bank increase
+    def add_to_balance(self):
+        self.current_balance += 25
+        self.save()
 
 
 class Photo(models.Model):

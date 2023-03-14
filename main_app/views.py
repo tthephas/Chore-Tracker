@@ -71,7 +71,13 @@ def kids_detail(request, kid_id):
 
   chores_kid_hasnt_done = Chore.objects.exclude(id__in=id_list)
 
-  return render(request, 'kids/detail.html', { 'kid': kid, 'chores': chores_kid_hasnt_done })
+  # updated_balance = Kid.objects.get(id=kid_id).add_to_balance()
+
+  return render(request, 'kids/detail.html', {
+    'kid': kid,
+    'chores': chores_kid_hasnt_done,
+    # 'current_balance': updated_balance 
+  })
 
 @login_required
 def assoc_chore(request, kid_id, chore_id):
@@ -84,6 +90,7 @@ def assoc_chore(request, kid_id, chore_id):
 def delete_chore(request, kid_id, chore_id):
   # Note that you can pass a toy's id instead of the whole toy object
   Kid.objects.get(id=kid_id).chores.remove(chore_id)
+  Kid.objects.get(id=kid_id).add_to_balance()
   return redirect('kids_detail', kid_id=kid_id)
   messages.success(request, "SUCCESS YES")
 
