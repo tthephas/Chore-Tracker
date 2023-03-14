@@ -35,7 +35,7 @@
                 {% csrf_token %}
                 <input type="file" name="photo-file">
                 <br><br>
-                <input type="submit" class="btn" style="height: 30px; padding-bottom:3px; border-radius: 20px; " value="Upload Photo"></input>
+                <input type="submit" class="btn" style="height: 30px; padding-bottom:3px; border-radius: 20px; margin-left: 10px; " value="Upload Photo"></input>
                 <!-- <input type="submit" class="btn red" style="height: 30px; padding-bottom:3px; " value="Delete Photo"></input> -->
               </form>
 
@@ -72,7 +72,7 @@
     <h3>{{ kid.name }}'s Chores</h3>
     {% if kid.chores.count %}
       {% for chore in kid.chores.all %}
-        <div class="card" style="border-radius: 20px; background-color: #E9E7F0;">
+        <div class="card" style="border-radius: 20px; background-color: #E9E7F0; ">
           <div class="card-content">
             <span class="card-title">
               <span>
@@ -109,23 +109,33 @@
 
 
     <div class="col s12">
-      <h3>Available Chores</h3>
+      <h3 style="color:#007252">Available Chores</h3>
       {% if chores.count %}
         {% for chore in chores.all %}
-          <div class="card" style="width: 300px; border-radius: 20px; display: inline-block; margin-left:10px; background-color: #E9E7F0;">
+          <div class="card" 
+                style="width: 450px; 
+                
+                display: inline-block; 
+                flex-wrap: wrap; 
+                border-radius: 20px;
+                color:#007252;
+                background-color: #E9E7F0;
+                margin: 10px;
+                height: 230px;
+                ">
             <div class="card-content">
-              <span class="card-title">
-                {{ chore.name }}<br><br>
+              <span class="card-title" style="font-size: 20px;">
+                {{ chore.name }}<br>
                 
                 {{ chore.description }}<br><br>
-                {{ chore.amount }}$<br>
+                {{ chore.amount }}$
               </span>
-            </div>
-            <div class="card-action" style="border-radius: 20px;">
-              <form action="{% url 'assoc_chore' kid.id chore.id %}" method="POST">
-                {% csrf_token %}
-                <button type="submit" class="btn">Add</button>
-              </form>
+              
+                <form action="{% url 'assoc_chore' kid.id chore.id %}" method="POST">
+                  {% csrf_token %}
+                  <button type="submit" class="btn" style="margin: 0px 0px 150px 140px; width: 100px;">Add</button>
+                </form>
+              
             </div>
           </div>
         {% endfor %}
