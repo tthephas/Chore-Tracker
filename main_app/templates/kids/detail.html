@@ -3,12 +3,12 @@
 
 
 <div class="row">
-    <h5>{{ kid.name }} Details</h5>
+
   <div class="col s7">
-      <div class="col s6"> 
-          <div class="card">
-            <div class="card-content">
-                <span class="card-title">{{ kid.name }}</span>
+      <div class="col s6 pull-s3"> 
+          <div class="card" style="width: 350px; border-radius: 20px; margin-top:40px; background-color: #E9E7F0; " >
+            <div class="card-content" style="font-weight: bolder; color:#008797">
+                <span class="card-title" style="font-weight: bold;">{{ kid.name }}</span>
                 <p>Age: {{ kid.age }}</p>
                 
                 <p>Parent: {{ kid.parent }}</p>
@@ -16,23 +16,34 @@
 
 
             <!-- photo -->
-            <div class="card small" style="height:fit-content; padding:5px;">
+
               {% for photo in kid.photo_set.all %}
-              <img class="responsive-img card-panel" src="{{photo.url}}">
+              <img 
+                class="responsive-img card small"  
+                style="max-width: 100%; max-height: 100%; border: none;  " 
+                src="{{photo.url}}">
               {% empty %}
               <div class="card-panel teal-text center-align">No Photos Uploaded</div>
               {% endfor %}
               <!-- photo form -->
-              <form action="{% url 'add_photo' kid.id %}" enctype="multipart/form-data" method="POST" class="card-panel">
+              <form 
+                action="{% url 'add_photo' kid.id %}" 
+                enctype="multipart/form-data" 
+                method="POST" 
+                
+                style="font-size: 12px; padding-bottom: 5px; border-radius: 20px; margin: 0;">
+
                 {% csrf_token %}
                 <input type="file" name="photo-file">
                 <br><br>
-                <input type="submit" class="btn" value="Upload Photo"></input>
+                <input type="submit" class="btn" style="height: 30px; padding-bottom:3px; border-radius: 20px; margin-left: 10px; " value="Upload Photo"></input>
+                <!-- <input type="submit" class="btn red" style="height: 30px; padding-bottom:3px; " value="Delete Photo"></input> -->
               </form>
-            </div>
 
 
-            <div class="card-action">
+
+
+            <div class="card-action" style="height: 30px; padding:2px; border-radius: 10px; ">
                 <a href="{% url 'kids_update' kid.id %}">Edit</a>
                 <a href="{% url 'kids_delete' kid.id %}">Delete</a>
             </div>
@@ -40,28 +51,36 @@
       
 
       </div>
-      <div class="col s6">
-        <div class="card" style="text-align: center">
-          <span class="card-title" >Piggy Bank Balance</span>
+      <div class="col s6 push-s0">
+        <div 
+          class="card large" 
+          style="text-align: center; padding-top: 40px; width: 350px; margin-top:40px; margin-bottom: 15px; border-radius: 20px; background-color: #E9E7F0;">
+          <span class="card-title" style="font-weight: bolder; color:#008797; font-size: 36px;" >Piggy Bank Balance</span>
           
           <img 
               src="https://m.media-amazon.com/images/I/51ckv2myWXL._AC_SL1280_.jpg" 
-              style="height:200px; width:200px" 
+              style="height:250px; width:250px; margin: 30px 0 0 0 ;" 
               class="responsive-img">
-          <h4>${{ kid.current_balance }}</h4>
+
+
+            <h1 style="color:#008797">${{ kid.current_balance }}</h1>
+
+          
         </div>
       </div>
   </div>
-  <div class="col s5 push-s1">
+  <div class="col s5 push-s2" style="text-align: center; margin-top: 20px; color:#007252">
     <h3>{{ kid.name }}'s Chores</h3>
     {% if kid.chores.count %}
       {% for chore in kid.chores.all %}
-        <div class="card">
+        <div class="card" style="border-radius: 20px; background-color: #E9E7F0; ">
           <div class="card-content">
             <span class="card-title">
 
-                {{ kid.name}} did 
-                "{{ chore.name }}" for 
+              <span>
+                
+                {{ chore.name }} for 
+
                 {{ chore.amount }} dollars
 
 
@@ -75,44 +94,65 @@
             </div>
           </div>
         </div>
+
       {% endfor %}
+      <div class="row" style="text-align: center;">
+        <a href="{% url 'chores_create' %}" style="text-decoration: underline; color:#8A0077">
+            <h3> Build a chore or choose from one below! </h3>
+          </a>
+      </div>
     {% else %}
       <h5>No Chores Done </h5>
+      <div class="row" >
+        <a href="{% url 'chores_create' %}" style="text-decoration: underline;">
+            <h3> Build a chore or choose from one below! </h3>
+          </a>
+      </div>
     {% endif %}
   </div>
   <div class="row"></div>
-  <div class="row">
-    <a href="{% url 'chores_create' %}">
-        <h2> Build a chore or choose from one below! </h2>
-      </a>
-  </div>
+
+
 </div>
 <hr>
 <div class="row">
 
 
-    <div class="col s6">
-      <h3>Available Chores</h3>
+    <div class="col s12">
+      <h3 style="color:#007252">Available Chores</h3>
       {% if chores.count %}
         {% for chore in chores.all %}
-          <div class="card">
+          <div class="card" 
+                style="width: 450px; 
+                
+                display: inline-block; 
+                flex-wrap: wrap; 
+                border-radius: 20px;
+                color:#007252;
+                background-color: #E9E7F0;
+                margin: 10px;
+                height: 230px;
+                ">
             <div class="card-content">
-              <span class="card-title">
+              <span class="card-title" style="font-size: 20px;">
                 {{ chore.name }}<br>
-                {{ chore.description }}<br>
-                {{ chore.amount }}<br>
+
+                
+                {{ chore.description }}<br><br>
+                {{ chore.amount }}$
+
               </span>
-            </div>
-            <div class="card-action">
-              <form action="{% url 'assoc_chore' kid.id chore.id %}" method="POST">
-                {% csrf_token %}
-                <button type="submit" class="btn">Add</button>
-              </form>
+              
+                <form action="{% url 'assoc_chore' kid.id chore.id %}" method="POST">
+                  {% csrf_token %}
+                  <button type="submit" class="btn" style="margin: 0px 0px 150px 140px; width: 100px;">Add</button>
+                </form>
+              
             </div>
           </div>
         {% endfor %}
       {% else %}
-        <h5>{{kid.name}} Already Has All Chores Available</h5>
+        
       {% endif %}
     </div>
 

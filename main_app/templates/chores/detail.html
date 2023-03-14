@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Chore Details</h1>
+<h1 style="color:#007252">Chore Details</h1>
 
-    <div class="card">
+    <div class="card" style="width: 500px; border-radius: 20px; background-color: #E9E7F0; color:#007252">
         <div class="card-content">
             <span class="card-title">{{ chore.name }}</span>
             <p>Date: {{ chore.date }}</p>
@@ -12,7 +12,7 @@
             <p>Pay Amount: {{ chore.amount }} Dollars </p>
 
         </div>
-        <div class="card-action">
+        <div class="card-action" style="border-radius: 20px;">
             <a href="{% url 'chores_update' chore.id %}">Edit</a>
             <a href="{% url 'chores_delete' chore.id %}">Delete</a>
           </div>

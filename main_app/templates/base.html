@@ -11,16 +11,23 @@
   <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schoolbell&display=swap" rel="stylesheet">
 
 </head>
-<body>
-  <header class="navbar-fixed">
+<body style="
+      background-image: linear-gradient(to right top, #fbade8, #f4a1e8, #eb95e9, #e089eb,
+       #d37fee, #d180f0, #ce82f1, #cc83f3, #d48ff4, #dc9cf5, #e3a8f6, #eab5f8);">
+  <header class="navbar-fixed" >
     <nav>
-      <div class="nav-wrapper">
+      <div class="nav-wrapper" style="background-color: #4C9FEF; ">
         <ul>
-          <li><a href="/" class="left brand-logo">&nbsp;&nbsp;Chore Tracker</a></li>
+          <li><a href="/" class="left brand-logo" style="font-family: 'Schoolbell', cursive; font-weight: bolder;">&nbsp;&nbsp;Chore Tracker</a></li>
         </ul>
-        <ul class="right">
+        <ul class="right" style="font-family: 'Schoolbell', cursive; font-weight: bolder;">
           <li><a href="{% url 'about' %}">About Chore Tracker</a></li>
           {% if user.is_authenticated %}
           <li><a href="{% url 'parents_create' %}">Add Parents</a></li>
@@ -47,7 +54,7 @@
     {% block content %}
     {% endblock %}
   </main>
-  <footer class="page-footer">
+  <footer class="page-footer" style="background-color: #D67AB1;>
     <div class="right">All Rights Reserved, JT, &copy; 2023 Chore Tracker &nbsp;</div>
   </footer>
 </body>

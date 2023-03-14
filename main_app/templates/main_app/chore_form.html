@@ -4,18 +4,18 @@
     {% if object %}
     <h1>Edit <span class="teal-text">{{object.name}}</span></h1>
     {% else %}
-    <h1>Add NEW Chore for {{ kid.name }}</h1>
+    <h1 style="color:#007252; ">Add NEW Chore</h1>
     {% endif %}
 
 
-  <form action="{% url 'chores_create' %}" method="POST">
+  <form action="{% url 'chores_create' %}" method="POST" style="background-color: #E9E7F0; width: 750px; font-weight: bold; border-radius: 20px; padding: 20px;">
       <!-- Django requires the following for security purposes -->
       {% csrf_token %}
         <table>
             {{ form.as_table }}
         </table>
       <br>
-      <input type="submit" value="Submit for approval" class="btn">
+      <input type="submit" value="Submit for approval" class="btn" style="border-radius: 20px;">
   </form>
 
 
