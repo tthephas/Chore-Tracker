@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Parent Details</h1>
+<h1 style="color:#007252">Parent Details</h1>
     <div class="row">
         <div class="col s8">    
         
-            <div class="card medium">
+            <div class="card medium" style="border-radius: 20px;background-color: #E9E7F0">
               <div class="col s4">
-                <div class="card-content">
+                <div class="card-content" style="color:#007252; ">
                   <span class="card-title">{{ parent.name }}</span>
                   <p># of Children: {{ parent.children }}</p>
                   
@@ -15,16 +15,16 @@
               </div>
               <div class="col s8">
                 
-                <div class="card small" style="height:fit-content; padding:5px;">
-                  <form action="{% url 'add_kid' parent.id %}" method="POST">
+                <div class="card small" style="height:fit-content; padding:10px; margin-bottom: 10px;">
+                  <form action="{% url 'add_kid' parent.id %}" method="POST" >
                     {% csrf_token %}
                     <!-- Render the inputs -->
                     {{ kid_form.as_p }}
-                    <input type="submit" class="btn" value="Add a Child's Info">
+                    <input type="submit" class="btn" value="Add a Child's Info" style="border-radius: 20px;">
                   </form>
                 </div>
               </div>
-                <div class="card-action">
+                <div class="card-action" style="border-radius: 20px;">
                     <a href="{% url 'parents_update' parent.id %}">Edit</a>
                     <a href="{% url 'parents_delete' parent.id %}">Delete</a>
                 </div>
@@ -34,9 +34,9 @@
             
         <div class="col s4">
 
-          <table class="striped" >
+          <table class="striped" style="color:#007252" >
             <thead>
-              <h5>{{ parent.name }}'s Children </h5>
+              <h5 style="color:#007252">{{ parent.name }}'s Children </h5>
               <tr>
                 <th>Name</th>
                 <th>Age</th>

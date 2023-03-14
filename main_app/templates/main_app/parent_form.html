@@ -4,17 +4,17 @@
     {% if object %}
     <h1>Edit <span class="teal-text">{{object.name}}</span></h1>
     {% else %}
-    <h1>Add NEW Parent</h1>
+    <h1 style="color:#007252">Add NEW Parent</h1>
     {% endif %}
 
 
-  <form action="" method="POST">
+  <form action="" method="POST" style="background-color: #E9E7F0; width: 600px; font-weight: bold; border-radius: 20px; padding: 20px;">
     <!-- Django requires the following for security purposes -->
     {% csrf_token %}
     <table>
         {{ form.as_table }}
     </table>
     <br>
-    <input type="submit" value="Submit" class="btn">
+    <input type="submit" value="Submit" class="btn" style="margin: 0 0 15px 15px">
   </form>
 {% endblock %}

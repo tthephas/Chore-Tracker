@@ -5,8 +5,8 @@
 
   <div class="col s7">
       <div class="col s6 pull-s3"> 
-          <div class="card" style="width: 350px; border-radius: 20px; margin-top:40px; " >
-            <div class="card-content" style="font-weight: bolder;">
+          <div class="card" style="width: 350px; border-radius: 20px; margin-top:40px; background-color: #E9E7F0; " >
+            <div class="card-content" style="font-weight: bolder; color:#008797">
                 <span class="card-title" style="font-weight: bold;">{{ kid.name }}</span>
                 <p>Age: {{ kid.age }}</p>
                 
@@ -53,23 +53,26 @@
       <div class="col s6 push-s0">
         <div 
           class="card large" 
-          style="text-align: center; padding-top: 40px;  width: 350px; margin-top:40px; margin-bottom: 15px; border-radius: 20px; ">
-          <span class="card-title" style="font-weight: bolder;" >Piggy Bank Balance</span>
+          style="text-align: center; padding-top: 40px; width: 350px; margin-top:40px; margin-bottom: 15px; border-radius: 20px; background-color: #E9E7F0;">
+          <span class="card-title" style="font-weight: bolder; color:#008797; font-size: 36px;" >Piggy Bank Balance</span>
           
           <img 
               src="https://m.media-amazon.com/images/I/51ckv2myWXL._AC_SL1280_.jpg" 
-              style="height:250px; width:250px; margin-top: 30px;" 
+              style="height:250px; width:250px; margin: 30px 0 0 0 ;" 
               class="responsive-img">
-          <h1>${{ kid.current_balance }}</h1>
+
+
+            <h1 style="color:#008797">${{ kid.current_balance }}</h1>
+
           
         </div>
       </div>
   </div>
-  <div class="col s5 push-s2" style="text-align: center; margin-top: 20px;">
+  <div class="col s5 push-s2" style="text-align: center; margin-top: 20px; color:#007252">
     <h3>{{ kid.name }}'s Chores</h3>
     {% if kid.chores.count %}
       {% for chore in kid.chores.all %}
-        <div class="card" style="border-radius: 20px;">
+        <div class="card" style="border-radius: 20px; background-color: #E9E7F0;">
           <div class="card-content">
             <span class="card-title">
               <span>
@@ -84,7 +87,7 @@
 
       {% endfor %}
       <div class="row" style="text-align: center;">
-        <a href="{% url 'chores_create' %}" style="text-decoration: underline;">
+        <a href="{% url 'chores_create' %}" style="text-decoration: underline; color:#8A0077">
             <h3> Build a chore or choose from one below! </h3>
           </a>
       </div>
@@ -109,7 +112,7 @@
       <h3>Available Chores</h3>
       {% if chores.count %}
         {% for chore in chores.all %}
-          <div class="card" style="width: 300px; border-radius: 20px; display: inline-block; margin-left:10px;">
+          <div class="card" style="width: 300px; border-radius: 20px; display: inline-block; margin-left:10px; background-color: #E9E7F0;">
             <div class="card-content">
               <span class="card-title">
                 {{ chore.name }}<br><br>

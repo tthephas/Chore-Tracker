@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Parent List</h1>
+<h1 style="color:#007252">Parent List</h1>
 
 {% for parent in parents %}
-  <div class="card hoverable" style="width: 400px;">
+  <div class="card hoverable" style="width: 400px; border-radius: 20px; background-color: #E9E7F0">
     <a href="{% url 'parents_detail' parent.id %}" style="color: black;">
-      <div class="card-content">
+      <div class="card-content" style="color:#007252; ">
         <span class="card-title">{{ parent.name }}</span>
         <p>Number of kids: {{ parent.children }}</p>
 

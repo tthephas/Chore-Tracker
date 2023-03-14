@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Kid List</h1>
+<h1 style="color:#007252; ">Kid List</h1>
 
 {% for kid in kids %}
-  <div class="card hoverable" style="width: 400px; border-radius: 20px;">
+  <div class="card hoverable" style="width: 400px; border-radius: 20px; color:#007252; background-color: #E9E7F0">
     <a href="{% url 'kids_detail' kid.id %}" style="color: black;">
-    <div class="card-content" >
+    <div class="card-content" style="color:#007252" >
       <span class="card-title">{{ kid.name }}</span>
 
       <p>Age: {{ kid.age }}</p>
