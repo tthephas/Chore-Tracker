@@ -55,10 +55,21 @@
 
                   </tr>
               
-              {% endfor %}
-            </tbody>
-          </table> 
-        </div>
+                  {% endfor %}
+                </tbody>
+              </table> 
+              <br>
+              <div>
+
+                {% if parent.kid_set.count %}
+                <a href="{% url 'kids_index' %}" 
+                style="font-size: 36px;
+                    color: #007252">Go to Kids page</a>
+                {% else %}
+                <br>
+              {% endif %}
+            </div>
+            </div>
 
 
     </div>
